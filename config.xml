@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <set>
+    <database>db.sqlite</database>
+    <directory>site</directory>
+    <thread>2</thread>
+    <checkend>10</checkend>
+    <checkendflag>fckciwk.flg</checkendflag>
+  </set>
+</document>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <site>
+    <name>妹子 - 贴图版 - 糗事百科</name>
+    <shortname>mm</shortname>
+    <url>http://www.qiushibaike.com/f/girl</url>
+    <code>utf=8</code>
+    <interval>4000</interval>
+    <checkDuplicate>1</checkDuplicate>
+    <state>stop</state>
+    <posturl>http://localhost:1969/inc/GetWebInfo.ashx</posturl>
+    <items>
+      <list>
+        <filter></filter>
+        <content><![CDATA[<div id="articles">{$.*$}//显示评论编辑框]]></content>
+        <split max="100"><![CDATA[<a href="{$[^"]*$}">下一页</a>]]></split>
+        <items>
+          <info allowrep="1" isrow="1">
+            <filter></filter>
+            <content><![CDATA[class="article-block"{$.*$}复</button>]]></content>
+            <items>
+                <title field="title">
+                  <filter>all</filter>
+                  <content><![CDATA[<p>{$.*$}</p>]]></content>
+                </title>
+                <cont field="content">
+                  <filter>all</filter>
+                   <local>mm</local>
+                  <content><![CDATA[>{$.*$}回]]></content>
+                </cont>
+            </items>
+          </info>
+        </items>
+      </list>
+    </items>
+  </site>
+</document>

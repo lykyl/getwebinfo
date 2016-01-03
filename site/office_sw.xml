@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <site>
+    <name>政务公开-市委</name>
+    <shortname>office_sw</shortname>
+    <url>http://www.wuhu.gov.cn/content/channel/544f4d5e0a86c15431845c0f/</url>
+    <code>utf-8</code>
+    <interval>350</interval>
+    <checkDuplicate>1</checkDuplicate>
+    <state>stop</state>
+    <posturl>http://news_api.app.m2o/news/news_update.php</posturl>
+    <postarg>
+        <a>create</a>
+        <app>news</app>
+        <module>news</module>
+        <appkey>e7d0483ad562d64217dabca9a76fd4af</appkey>
+        <appid>1</appid>
+    </postarg>
+    <items>
+      <list>
+        <filter />
+        <content><![CDATA[<ul class="is-listnews">{$.*$}</ul>]]></content>
+        <split max="1"><![CDATA[<div id="page_list"><a href="{$[^"]*$}"><span class="page">下一页]]></split>
+        <items>
+          <info allowrep="1" isrow="1">
+            <filter />
+            <content><![CDATA[<li >{$.*$}</li>]]></content>
+            <items>
+                <title field="title" keyfield="title">
+                  <filter>all</filter>
+                  <content><![CDATA[title="{$.*$}">]]></content>
+                </title>
+              <link keyfield="url">
+                <filter />
+                <content><![CDATA[ href="{$.*$}"]]></content>
+                <items>
+                    <time field="pub_time" inlink="1">
+                      <filter>all</filter>
+                      <content><![CDATA[发布时间：{$.*$}<]]></content>
+                    </time>
+                    <cont field="content" inlink="1">
+                       <local>office_sw</local>
+                      <filter>all!img,br</filter>
+                      <content><![CDATA[<div class="is-newscontnet"  id="zoom">{$.*$}【打印本页】]]></content>
+                    </cont>
+                </items>
+              </link>
+            <source field="source">
+              <filter>all</filter>
+              <content>芜湖政府网</content>
+            </source>
+            </items>
+          </info>
+        </items>
+      </list>
+    </items>
+  </site>
+</document>    

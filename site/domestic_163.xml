@@ -1,0 +1,56 @@
+<document>
+  <site>
+    <name>网易-国内</name>
+    <shortname>domestic_163</shortname>
+    <url>http://news.163.com/domestic/</url>
+    <code>gbk</code>
+    <interval>100</interval>
+    <checkDuplicate>1</checkDuplicate>
+    <state>test</state>
+    <posturl>http://news_api.app.m2o/news/news_update.php</posturl>
+    <postarg>
+        <a>create</a>
+        <app>news</app>
+        <module>news</module>
+        <appkey>e7d0483ad562d64217dabca9a76fd4af</appkey>
+        <appid>1</appid>
+    </postarg>
+    <items>
+      <list>
+        <filter />
+        <content><![CDATA[<div class="area-left">{$.*$}<div class="area-right">]]></content>
+        <items>
+          <info allowrep="1" isrow="1">
+            <filter />
+            <content><![CDATA[<div class="list-item clearfix">{$.*$}</div>]]></content>
+            <items>
+                <time field="pub_time">
+                  <filter>all</filter>
+                  <content><![CDATA[<span class="time">{$.*$}</span>]]></content>
+                </time>
+                <title field="title" keyfield="title">
+                  <filter>all</filter>
+                  <content><![CDATA[<h2>{$.*$}</h2>]]></content>
+                </title>
+              <link keyfield="url">
+                <filter />
+                <content><![CDATA[<h2><a href="{$[^#]*$}#]]></content>
+                <items>
+                    <source field="source" inlink="1">
+                      <filter>all</filter>
+                      <content><![CDATA[本文来源：{$.*$}</span>]]></content>
+                    </source>
+                    <cont field="content" inlink="1">
+                       <local>wy</local>
+                      <filter>all!img,br</filter>
+                      <content><![CDATA[<div id="endText" class="end-text">{$.*$}<div class="sharecommend-wrap clearfix">]]></content>
+                    </cont>
+                </items>
+              </link>
+            </items>
+          </info>
+        </items>
+      </list>
+    </items>
+  </site>
+</document>

@@ -1,0 +1,58 @@
+<document>
+  <site>
+    <name>芜湖新闻网-要闻</name>
+    <shortname>wuhunews_yw</shortname>
+    <url>http://www.wuhunews.cn/whnews/yaowen/</url>
+    <code>utf-8</code>
+    <interval>600</interval>
+    <checkDuplicate>1</checkDuplicate>
+    <state>stop</state>
+    <posturl>http://news_api.app.m2o/news/news_update.php</posturl>
+    <postarg>
+        <a>create</a>
+        <app>news</app>
+        <module>news</module>
+        <appkey>e7d0483ad562d64217dabca9a76fd4af</appkey>
+        <appid>1</appid>
+    </postarg>
+    <items>
+      <list>
+        <filter />
+        <content><![CDATA[<ul class="ContentListUL">{$.*$}</ul>]]></content>
+        <split max="1"><![CDATA[href='{$[^']*$}' title='下一页'>下一页</a>]]></split>
+        <items>
+          <info allowrep="1" isrow="1">
+            <filter />
+            <content><![CDATA[<li class="">{$.*$}</li>]]></content>
+            <items>
+                <time field="pub_time">
+                  <filter>all</filter>
+                  <content><![CDATA[<span>{$.*$}</span>]]></content>
+                </time>
+                <title field="title" keyfield="title">
+                  <filter>all</filter>
+                  <content>title="{$.*$}"</content>
+                </title>
+              <link keyfield="url">
+                <filter />
+                <content> href="{$.*$}"</content>
+                <items>
+                    <source field="source" inlink="1">
+                      <filter>all</filter>
+                        <content><![CDATA[芜湖新闻网]]></content>
+                    </source>
+                    <cont field="content" inlink="1">
+                       <local>yw</local>
+                      <filter>all!img,br</filter>
+                      <content><![CDATA[<div class="Text">{$.*$}</div>]]></content>
+                        <split merge="1"><![CDATA[href='{$[^']*$}' title='下一页'>]]></split>
+                    </cont>
+                </items>
+              </link>
+            </items>
+          </info>
+        </items>
+      </list>
+    </items>
+  </site>
+</document>
