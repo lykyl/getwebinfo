@@ -175,7 +175,8 @@ class getInfo(threading.Thread):
                     result.update(self.GetItems(nodeitems,strStoreId,Site).copy())
                 self.ContStore[strStoreId]=None
                 #当抓取项目是测试状态时不做图片本地化处理
-                if len(strLocal)>0 and Site.State!="test":
+                #if len(strLocal)>0 and Site.State!="test":
+                if len(strLocal)>0 :
                     strValue=self.GetURLFile(strValue,strLocal)
                 if len(strField)>0:
                     result[strField]=strValue
@@ -244,8 +245,9 @@ class getInfo(threading.Thread):
         re_data = re.compile(r'(?P<f>img.*?src\s*=[\'\"])(?P<content>.[^\'\"]*)', re.I|re.S)
         strFullPath=self.AppPath+strLocal+os.path.sep
         for match in re_data.finditer(strContent):
-            fileInfo=(match.group(2),strFullPath)
-            self.downLoadQueue.put(fileInfo)
+            if match.group(2)!="about:blank":
+                fileInfo=(match.group(2),strFullPath)
+                self.downLoadQueue.put(fileInfo)
         strContent=re_data.sub(r"\1"+strLocal.replace("\\","/")+r"/\2",re_data.sub(self.remote2local,strContent))
         return strContent
     

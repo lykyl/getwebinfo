@@ -17,6 +17,7 @@ def GetWeb(strUrl,strCode="utf-8",nTryTime=3):
             content=web.read().strip().decode(strCode).replace("\r","")
             nTryTime=-10
         except Exception,e:
+            print strUrl
             print e
             content=u""
             nTryTime-=1

@@ -121,7 +121,7 @@ class SiteClass(object):
         self.ConfigFile=strFile.strip()  
 
     def SetUrl(self,strUrl=""):
-        self.Url=strUrl.strip().lower()
+        self.Url=strUrl.strip()
         #整理URL路径并保存，方便后面程序使用
         UrlInfo=urlparse.urlparse(self.Url)
         self.SiteBaseUrl=UrlInfo.scheme+"://"+UrlInfo.netloc
